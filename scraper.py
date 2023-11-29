@@ -3,11 +3,13 @@ from bs4 import BeautifulSoup
 import urllib.parse
 import subprocess
 import re
+import logging
 
 class GameScraper:
     def __init__(self, existing_terms):
         self.existing_terms = existing_terms
         self.chrome_path = r'C:\Program Files\Google\Chrome\Application\chrome.exe'
+        self.session = requests.Session()
         self.urls = [
             'https://1337x.to/popular-games',
             'https://1337x.to/popular-games-week',
@@ -19,14 +21,18 @@ class GameScraper:
     def scrape_game_terms(self):
         new_searched_terms = set()
         for url in self.urls:
-            new_terms = self._scrape_url(url)
-            new_searched_terms.update(new_terms)
+            try:
+                new_terms = self._scrape_url(url)
+                new_searched_terms.update(new_terms)
+            except Exception as e:
+                logging.error(f"Erro ao raspar URL {url}: {e}")
         return new_searched_terms
 
     def _scrape_url(self, url):
         new_terms = set()
-        response = requests.get(url)
+        response = self.session.get(url)
         response.raise_for_status()
+
         soup = BeautifulSoup(response.text, 'html.parser')
         featured_div = soup.find('div', class_='featured-list')
         game_links = featured_div.find_all('a') if featured_div else []
@@ -50,7 +56,7 @@ class GameScraper:
                 self.existing_terms.add(search_term)
                 new_terms.add(search_term)
 
-                print(f"Pesquisando por: {search_term}")
+                logging.info(f"Pesquisando por: {search_term}")
                 search_query = urllib.parse.quote(search_term)
                 youtube_search_url = f"https://www.youtube.com/results?search_query={search_query}"
                 subprocess.Popen([self.chrome_path, youtube_search_url])
