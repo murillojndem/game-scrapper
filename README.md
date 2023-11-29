@@ -2,6 +2,15 @@
 
 Este projeto consiste em um script Python que faz web scraping de nomes de jogos de várias páginas do site 1337, um site de download confiado e verificado pela comunidade de cracking do Reddit. O script realiza pesquisas automáticas no YouTube para cada jogo, facilitando a atualização sobre os jogos mais populares e visualizações de gameplay.
 
+## Estrutura do Projeto
+
+O projeto está dividido nos seguintes arquivos:
+
+- `main.py`: Ponto de entrada do programa. Coordena o processo de scraping e o tratamento dos termos pesquisados.
+- `scraper.py`: Contém toda a lógica de web scraping, incluindo a extração de nomes de jogos das páginas e a pesquisa no YouTube.
+- `utils.py`: Funções auxiliares para carregar e salvar os termos pesquisados em um arquivo `.txt`.
+
+
 ## Funcionalidades
 
 - **Web Scraping de Dados de Múltiplas Páginas do Site 1337:** O script faz web scraping de nomes de jogos de várias páginas, incluindo listas de jogos populares e tendências.
