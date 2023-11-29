@@ -18,3 +18,14 @@ Para instalar as dependências necessárias, execute os seguintes comandos no co
 ```bash
 pip install requests
 pip install beautifulsoup4
+```
+
+## Uso
+
+Para executar o script, certifique-se de que todas as dependências estejam instaladas e execute o arquivo principal do projeto. O script irá automaticamente fazer web scraping dos nomes dos jogos, filtrar conforme especificado, e realizar pesquisas no YouTube.
+
+## Aviso sobre Uso de Memória RAM
+
+**Disclaimer**: A execução deste programa pode consumir uma quantidade significativa de memória RAM, especialmente se estiver processando uma grande quantidade de dados. Certifique-se de que seu sistema tenha recursos suficientes para executá-lo de maneira eficiente.
+
+
